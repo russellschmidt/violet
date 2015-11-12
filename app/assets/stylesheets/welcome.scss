@@ -35,3 +35,20 @@ div.social-btn:hover {
   background-color: $social-btn-bk-hover-color;
   text-decoration: none;
 }
+
+.question {
+  margin: 10px 0 10px 10px;
+}
+
+.question:first {
+  margin-top: 0;
+}
+
+.answer {
+  margin: 0 0 0 15px;
+}
+
+img#conan {
+  width: 100%;
+  height: auto;
+}

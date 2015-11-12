@@ -29,3 +29,6 @@ gem 'turbolinks'
 
 # Bootstrap to make it perty
 gem 'bootstrap-sass'
+
+# get HAML to make easier View templates
+gem 'haml'
