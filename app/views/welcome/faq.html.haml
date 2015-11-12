@@ -1,6 +1,6 @@
 .container-12
   %h1 F.A.Q.
-  .container-8
+  .container-10
     %p
       %dl
         %dt.question What is best in life?
@@ -9,6 +9,13 @@
         %dd.answer Suffer no guilt, ye who wield this in the name of Crom.
         %dt.question What historical god is Crom based off of?
         %dd.answer The Irish Celtic god Crom Cruach, who demanded human sacrifice.
+
+      %h4 Important People in History
+      - characters = %W{Conan Thulsa\ Doom King\ Osric Valeria Rexor Subotai Thorgrim}
+      .container-8
+        %ul
+          - characters.each do |c|
+            %li=c
 
       .container-8
         %img#conan{:src => "http://i.kinja-img.com/gawker-media/image/upload/yvqylz3c0ywhkpt1g8of.jpg", :alt => "Conan"}
