@@ -5,4 +5,7 @@
       .media-heading
         - @posts.each do |post|
           %p
-            = link_to post.title, post
+            - if post.id == 1 || post.id % 5 ==0
+              = link_to "DIRTY SPAM", post
+            - else
+              = link_to post.title, post
