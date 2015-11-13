@@ -16,4 +16,17 @@
       %li= link_to "Contact", contact_path
       %li= link_to "FAQ", faq_path
 
+    - if flash[:notice]
+      .alert.alert-success
+        %button.close {type: "alert", data-dismiss: "alert"} &times;
+        = flash[:notice]
+    - if flash[:error]
+      .alert.alert-danger
+        %button.close {type: "alert", data-dismiss: "alert"} &times;
+        = flash[:error]
+    - if flash[:alert]
+      .alert.alert-warning
+        %button.close {type: "alert", data-dismiss: "alert"} &times;
+        = flash[:alert]
+
     =yield

@@ -1,0 +1,15 @@
+.container
+  %h1.col-sm-12 New Post
+  = form_for @post do |f|
+    .form-horizontal
+      .form_group
+        = f.label :title, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :title, class: "form-control"
+      .form_group
+        = f.label :body, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_area :body, class: "form-control", placeholder: "1. No curse words please  2.Be cool to each other  3.No hollerin\'"
+      .form_group
+        .col-sm-offset-2.col-sm-10
+          = f.submit "Save", class:"btn btn-success"
