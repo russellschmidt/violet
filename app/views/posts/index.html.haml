@@ -1,11 +1,8 @@
 .container
   %h1 All Posts
-  .media
+  .media.row
     .media-body
       .media-heading
         - @posts.each do |post|
           %p
-            - if post.id == 1 || post.id % 5 ==0
-              = link_to "DIRTY SPAM", post
-            - else
-              = link_to post.title, post
+            = link_to post.title, post
