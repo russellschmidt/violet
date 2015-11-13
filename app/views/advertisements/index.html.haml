@@ -1,0 +1,5 @@
+.container.col-sm-12
+  %h1.row Messages from our Sponsors
+  - @advertisements.each do |advertisement|
+    %p.row
+      = link_to advertisement.title, advertisement
