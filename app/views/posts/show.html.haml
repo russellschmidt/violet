@@ -1,3 +1,8 @@
 .container
   %h1.col-sm-12.row= @post.title
-  %p.col-sm-12.row= @post.body
+  .row
+    .col-md-8
+      %p=@post.body
+    .col-md-4
+      =link_to "Edit", edit_post_path(@post), class: "btn btn-success"
+      =link_to "Delete Post", @post, method: :delete, class: "btn btn-danger", data: {confirm: "R U Sure? Delete is forever"}

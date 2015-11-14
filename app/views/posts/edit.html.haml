@@ -1,0 +1,19 @@
+.container
+  %h1.row Edit Post
+  .row
+    .col-md-4
+      %h4 Guidelines for Posts
+      %ul
+        %li Make it rhyme
+        %li Make it a haiku
+        %li Use lots of hashbrowns
+    .col-md-8
+      =form_for @post do |f|
+        .form-group
+          =f.label :title
+          =f.text_field :title, class: 'form-control', placeholder: 'Title me'
+        .form-group
+          =f.label :body
+          =f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Enter post here'
+        .form-group
+          =f.submit "Save", class: "btn btn-success"

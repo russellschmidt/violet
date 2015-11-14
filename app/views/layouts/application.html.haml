@@ -22,15 +22,15 @@
 
     - if flash[:notice]
       .alert.alert-success
-        <button type= "button" data-dismiss="alert" class="close">&times;</button>
+        %button.close{"data-dismiss": "alert", type: "button"} &times;
         = flash[:notice]
     - elsif flash[:error]
       .alert.alert-danger
-        <button type= "button" data-dismiss="alert" class="close">&times;</button>
+        %button.close{"data-dismiss": "alert", type: "button"} &times;
         = flash[:error]
     - elsif flash[:alert]
       .alert.alert-warning
-        <button type= "button" data-dismiss="alert" class="close">&times;</button>
+        %button.close{"data-dismiss": "alert", type: "button"} &times;
         = flash[:alert]
 
     =yield
