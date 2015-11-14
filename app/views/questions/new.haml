@@ -1,0 +1,19 @@
+.container
+  %h1.col-sm-12 New Question
+  = form_for @question do |f|
+    .form-horizontal
+      .form_group
+        = f.label :title, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :title, class: "form-control", placeholder: "Fun title"
+      .form_group
+        = f.label :body, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_area :body, class: "form-control", placeholder: "1. Make it good."
+      .form_group
+        = f.label :resolved, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.check_box :resolved, class: "checkbox"
+      .form_group
+        .col-sm-offset-2.col-sm-10
+          = f.submit "Save", class:"btn btn-success"

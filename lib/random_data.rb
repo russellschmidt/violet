@@ -30,4 +30,7 @@ module RandomData
     rand(1..100)
   end
 
+  def random_boolean
+    rand(0..1) == 1 ? true : false
+  end
 end

@@ -1,0 +1,10 @@
+.container
+  %h1.row=@question.title
+  %p.row=@question.body
+  - if @question.resolved
+    %p.row <strong>Resolved</strong>
+  - else
+    %p.row <strong>Not Resolved</strong>
+  .row
+    =link_to "Edit", edit_question_path(@question), class: "btn btn-success"
+    =link_to "Delete Question", @question, method: :delete, class: "btn btn-danger", data: {confirm: "Sure? Delete is forever"}

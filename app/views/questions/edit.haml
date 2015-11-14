@@ -1,0 +1,22 @@
+.container
+  %h1.row Edit Question
+  .row
+    .col-md-4
+      %h4 Guidelines for Questions
+      %ul
+        %li Make it topical
+        %li Make it tropical
+        %li Make sure it is targeted
+    .col-md-8
+      =form_for @question do |f|
+        .form-group
+          =f.label :title
+          =f.text_field :title, class: 'form-control', placeholder: 'Title me'
+        .form-group
+          =f.label :body
+          =f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Enter post here'
+        .form-group
+          =f.label :resolved
+          =f.check_box :resolved, class:"checkbox"
+        .form-group
+          =f.submit "Save", class: "btn btn-success"
