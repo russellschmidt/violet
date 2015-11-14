@@ -1,13 +1,17 @@
 include RandomData
-
-Post.find_or_create_by(
-  title: "Now this is podracing!",
-  body: "Man oh man do I love racing my pod during podracing"
-)
+# Create topics
+15.times do
+  Topic.create!(
+    name: RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  )
+end
+topics = Topic.all
 
 # Create posts
 50.times do
   Post.create!(
+    topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
@@ -20,11 +24,6 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
-
-Comment.find_or_create_by(
-  post: posts.first,
-  body: "Gee whiz I love pod racing too"
-)
 
 #Create advertisements
 25.times do
@@ -47,6 +46,7 @@ end
 
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"

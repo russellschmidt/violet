@@ -1,0 +1,12 @@
+.container
+  %h1=@topic.name
+  = link_to "Edit Topic", edit_topic_path, class: 'btn btn-success'
+  .row
+    .col-md-8
+      %p.lead=@topic.description
+      - @topic.posts.each do |post|
+        .media
+          .media-body
+            %h4.media-heading=link_to post.title, post
+    .col-md-4
+      =link_to "New Post", new_post_path(@topic), class: 'btn btn-success'
