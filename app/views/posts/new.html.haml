@@ -1,6 +1,6 @@
 .container
   %h1.col-sm-12 New Post
-  = form_for @post do |f|
+  = form_for [@topic, @post] do |f|
     .form-horizontal
       .form_group
         = f.label :title, class: "col-sm-2 control-label"

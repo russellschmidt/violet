@@ -12,31 +12,34 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+    @topic = Topic.new
+    @topic.name = params[:topic][:name]
+    @topic.description = params[:topic][:description]
+    @topic.public = params[:topic][:public]
 
-    if @post.save
-      flash[:notice] = "Post was saved"
-      redirect_to @post
+    if @topic.save
+      flash[:notice] = "Topic was saved"
+      redirect_to @topic
     else
-      flash[:error] = "There was an error saving the post. Please try again."
+      flash[:error] = "There was an error creating the topic. Please try again."
       render :new
     end
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @topic = Topic.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+    @topic = Topic.find(params[:id])
 
-    if @post.save
+    @topic.name = params[:topic][:name]
+    @topic.description = params[:topic][:description]
+    @topic.public = params[:topic][:public]
+
+    if @topic.save
       flash[:notice] = "Post was updated"
-      redirect_to @post
+      redirect_to @topic
     else
       flash[:error] = "There was an error saving your update. Try again."
       render :edit
@@ -44,13 +47,13 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @topic = Topic.find(params[:id])
 
-    if @post.destroy
-      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
-      redirect_to posts_path
+    if @topic.destroy
+      flash[:notice] = "\"#{@topic.name}\" was deleted successfully."
+      redirect_to action: :index
     else
-      flash[:error] = "There was an error deleting the post"
+      flash[:error] = "There was an error deleting the topic"
       render :show
     end
   end

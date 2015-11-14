@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :advertisements, only: [:index, :show, :new, :create]
-  resources :topics, :posts, :questions
+  resources :questions
+  resources :topics do
+    resources :posts, except: [:index]
+  end
 
   get 'about' => 'welcome#about'
   get 'contact' => 'welcome#contact'
