@@ -26,7 +26,7 @@ posts = Post.all
 end
 
 #Create advertisements
-25.times do
+5.times do
   Advertisement.create!(
     title: RandomData.random_sentence,
     copy: RandomData.random_paragraph,
@@ -35,7 +35,7 @@ end
 end
 
 #Create questions
-33.times do
+10.times do
   Question.create!(
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph,
@@ -43,6 +43,15 @@ end
   )
 end
 
+#Create sponsored posts
+50.times do
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    price: RandomData.random_fixnum
+  )
+end
 
 
 puts "Seed finished"
@@ -51,3 +60,4 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
+puts "#{SponsoredPost.count} sponsored posts created"

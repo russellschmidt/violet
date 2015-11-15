@@ -3,12 +3,32 @@
   = link_to "Edit Topic", edit_topic_path, class: 'btn btn-success'
   = link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-success'
   .row
-    .col-md-8
+    .col-sm-8
       %p.lead=@topic.description
       - @topic.posts.each do |post|
         .media
           .media-body
             %h4.media-heading
-              =link_to post.title, post.topic
-    .col-md-4
+              =link_to post.title, topic_post_path(@topic, post)
+            %small
+              .col-md-1
+              .col-md-7
+                .row
+                  submitted
+                  = time_ago_in_words(post.created_at)
+                  ago
+                .row
+                  = post.comments.count
+                  Comments
+    .col-sm-4
       =link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success'
+  %h2.row Sponsored Posts
+  .row
+    .col-sm-8
+      -@topic.sponsored_posts.each do |sponsored_post|
+        .media
+          .media-body
+            %h4.media-heading
+              =link_to sponsored_post.title, topic_sponsored_post_path(@topic, sponsored_post)
+    .col-sm-4
+      =link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-success'

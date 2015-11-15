@@ -1,0 +1,28 @@
+.container
+  %h1.col-sm-12 Edit #{@sponsored_post.title}
+  .col-sm-4
+    .row
+      %h5 Rules for Posts
+      %ul
+        %li Coffee is for closers only
+        %li 2nd Prize is a set of steak knives
+        %li ABC Always Be Closing
+  .col-sm-8
+    .row
+      = form_for [@sponsored_post.topic, @sponsored_post] do |f|
+        .form_group
+          = f.label :title, class: "col-sm-2 control-label"
+          .col-sm-10
+            = f.text_field :title, class: "form-control", placeholder: "Call to Action Title! Inspire!"
+        .form_group
+          = f.label :body, class: "col-sm-2 control-label"
+          .col-sm-10
+            = f.text_area :body, class: "form-control", placeholder: "Be excellent to one another"
+        .form_group
+          = f.label :price, class: "col-sm-2 control-label"
+          .col-sm-2
+            = f.number_field :price, class: "form-control", placeholder: 13
+          .col-sm-8
+        .form_group
+          .col-sm-offset-2.col-sm-10
+            = f.submit "Save", class:"btn btn-success"
