@@ -9,20 +9,4 @@
         %li Keep it topical
         %li Cats are bad
     .col-sm-8
-      =form_for @topic do |f|
-        .form-group
-          =f.label :name
-          =f.text_field :name, class: 'form-control', placeholder: 'Your topic name'
-        .form-group
-          =f.label :description
-          =f.text_area :description, rows: 8, class: 'form-control', placeholder: 'Your topic description'
-        .form-group
-          =f.label :public, class: 'checkbox' do
-            .row
-              .col-sm-1
-              .col-sm-1
-                =f.check_box :public
-              .col-sm-6
-                %p Public Topic
-        .form-group
-          =f.submit "Save", class: 'btn btn-success'
+      = render partial: 'form', locals: { topic: @topic }

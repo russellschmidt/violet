@@ -1,0 +1,23 @@
+=form_for [topic] do |f|
+  - if topic.errors.any?
+    .alert.alert-danger
+      %h4=pluralize(topic.errors.count, "error")
+      %ul
+        -topic.errors.full_messages.each do |msg|
+          %li=msg
+  = form_group_tag(topic.errors[:name]) do
+    =f.label :name
+    =f.text_field :name, class: 'form-control', placeholder: 'Enter a topic'
+  = form_group_tag(topic.errors[:description]) do
+    =f.label :description
+    =f.text_area :description, class: 'form-control', placeholder: 'Enter a description'
+  .form-group
+    =f.label :public, class:'checkbox' do
+      .row
+        .col-sm-1
+        .col-sm-1
+          =f.check_box :public
+        .col-sm-6
+          %p Public Topic
+  .form-group
+    =f.submit "Save", class: 'btn btn-success'
