@@ -34,3 +34,6 @@ gem 'bootstrap-sass'
 
 # get HAML to make easier View templates
 gem 'haml'
+
+# BCrypt for secure passwords
+gem 'bcrypt'
