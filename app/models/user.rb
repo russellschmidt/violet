@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
 
   # inline callback.
   before_save { self.email = email.downcase }
+  before_save {
+    names = name.split(' ')
+    self.name = names.each{|n| n.capitalize!}.join(' ')
+  }
 
   # regex for email
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

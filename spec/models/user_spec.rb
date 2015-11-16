@@ -32,7 +32,9 @@ RSpec.describe User, type: :model do
   describe "invalid user" do
     let(:user_with_invalid_name) {User.new(name: "", email: "user@bloccit.com" )}
     let(:user_with_invalid_email) {User.new(name: "Bloccit User", email: "" )}
-    let(:user_with_invalid_email_format) { User.new(name: "Bloccit User", email:"invalid_format")}
+    let(:user_with_invalid_email_format) {User.new(name: "Bloccit User", email: "invalid_format")}
+
+    let(:user_with_invalid_caps) {User.new(name: "bob smith", email: "bob@bloccit.com")}
 
     it "should be an invalid user due to blank name" do
       expect(user_with_invalid_name).to_not be_valid
@@ -44,6 +46,10 @@ RSpec.describe User, type: :model do
 
     it "should be an invalid user due to incorrectly formatted email address" do
       expect(user_with_invalid_email_format).to_not be_valid
+    end
+
+    it "should be an invalid user due to incorrectly formatted space-delimited name" do
+      expect(user_with_invalid_caps).to_not be_valid
     end
 
   end
