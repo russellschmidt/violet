@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
 
   # inline callback.
-  before_save { self.email = email.downcase }
+
   before_save {
-    names = name.split(' ')
-    self.name = names.each{|n| n.capitalize!}.join(' ')
+    Rails.logger.info "[User#(before_save)] #{name.nil? ? '[nil]' : name} ***************"
+    self.email = email.downcase
+    unless name.blank?
+      names = self.name.split(' ')
+      self.name = names.each{|n| n.capitalize!}.join(' ')
+    end
   }
 
   # regex for email
