@@ -1,0 +1,21 @@
+<% user = @user %>
+<div class="jumbotron col-md-12">
+  <h1>Sign up Confirmation</h1>
+</div>
+<div class="md-10-12">
+  <h2>Are these values correct?</h2>
+  <div class="col-md-8">
+    <h4>
+      Name: <%= user.name %>
+    </h4>
+  </div>
+  <div class="col-md-8">
+    <h4>
+      Email: <%= user.email %>
+    </h4>
+  </div>
+  <div class="col-md-8">
+    <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: "btn btn-conf btn-success btn-lg" %>
+    <%= link_to "No", new_user_path, class: "btn btn-conf btn-danger btn-lg" %>
+  </div>
+</div>
