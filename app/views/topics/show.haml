@@ -13,11 +13,8 @@
             .small
               .col-md-1
               .row.col-md-7
-                Submitted
-                = time_ago_in_words(post.created_at)
-                ago
+                %p Submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.name}
               .row.col-md-7
-                = post.comments.count
-                Comments
+                %p #{post.comments.count} Comments
     .col-md-4
       =link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success'
