@@ -2,7 +2,7 @@ include RandomData
 
 #Create Users
 5.times do
-  user = User.create!(
+  User.create!(
     name: RandomData.random_name,
     email: RandomData.random_email,
     password: RandomData.random_sentence
@@ -56,6 +56,7 @@ end
 
 user = User.first
 user.update_attributes!(
+  name: 'Rusty',
   email: 'reuvenschmidt@gmail.com',
   password: '12344321'
 )
