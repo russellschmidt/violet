@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_many :posts
   # inline callback.
   before_save { self.email = email.downcase }
 
