@@ -9,11 +9,11 @@ group :production do
 end
 
 group :development do
- gem 'sqlite3'
  gem 'pry-rails'
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda'
 end
