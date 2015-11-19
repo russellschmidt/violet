@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user){ User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password")}
+  let(:user){ User.create!(name: "bloccit user", email: "user@bloccit.com", password: "password")}
 
   #shoulda tests for name
   it {should validate_presence_of(:name)}
@@ -26,6 +26,10 @@ RSpec.describe User, type: :model do
 
     it "should respond to email" do
       expect(user).to respond_to(:email)
+    end
+
+    it "should be properly capitalizing names" do
+      expect(user.name).to eq("Bloccit User")
     end
   end
 

@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   # inline callback.
 
   before_save {
-    Rails.logger.info "[User#(before_save)] #{name.nil? ? '[nil]' : name} ***************"
     self.email = email.downcase
     unless name.blank?
       names = self.name.split(' ')
@@ -18,11 +17,11 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}, if: "password_digest.nil?"
   validates :password, length: { minimum: 6 }, allow_blank: true
 
-    validates :email,
-                presence: true,
-                uniqueness: { case_sensitive: false },
-                length: { minimum: 3, maximum: 100 },
-                format: { with: EMAIL_REGEX}
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 3, maximum: 100 },
+            format: { with: EMAIL_REGEX}
 
   has_secure_password
 end
