@@ -55,13 +55,21 @@ end
   )
 end
 
-user = User.first
-user.update_attributes!(
+
+admin = User.create!(
   name: 'Rusty',
   email: 'reuvenschmidt@gmail.com',
-  password: '12344321'
+  password: '12344321',
+  role: 'admin'
 )
 
+
+member = User.create!(
+  name: 'Steve Sax',
+  email: 'sax@gmail.com',
+  password: '12344321',
+  role: 'member'
+)
 
 puts "Seed finished"
 puts "#{User.count} users created"
