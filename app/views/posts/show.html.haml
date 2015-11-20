@@ -1,6 +1,6 @@
 .container
-  %h1.col-sm-12
-    @post.title
+  %h1
+    =@post.title
     %small #{time_ago_in_words(@post.created_at)} ago by #{@post.user.name}
   .row
     .col-md-8

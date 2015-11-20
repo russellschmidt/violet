@@ -11,10 +11,8 @@
             %h4.media-heading
               =link_to post.title, topic_post_path(@topic, post)
             .small
-              .col-md-1
-              .row.col-md-7
-                %p Submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.name}
-              .row.col-md-7
-                %p #{post.comments.count} Comments
+              Submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.name}
+              %br/
+              #{post.comments.count} Comments
     .col-md-4
       =link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success'
