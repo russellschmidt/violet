@@ -13,7 +13,7 @@
     %ul.nav.nav-tabs
       %li=link_to "Bloccit", root_path
       %li=link_to "Topics", topics_path
-      %li=link_to "About", about_path
+      %li=link_to "About", about_welcome_index_path
 
       - if current_user
         %li=link_to "Hi #{current_user.name} - Sign Out", session_path(current_user), method: :delete
