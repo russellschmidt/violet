@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121214415) do
+ActiveRecord::Schema.define(version: 20151121224614) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -78,8 +78,19 @@ ActiveRecord::Schema.define(version: 20151121214415) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ratingalings", force: :cascade do |t|
+    t.integer  "rating_id"
+    t.integer  "ratingable_id"
+    t.string   "ratingable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "ratingalings", ["rating_id"], name: "index_ratingalings_on_rating_id"
+  add_index "ratingalings", ["ratingable_type", "ratingable_id"], name: "index_ratingalings_on_ratingable_type_and_ratingable_id"
+
   create_table "ratings", force: :cascade do |t|
-    t.integer  "rating"
+    t.integer  "severity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
