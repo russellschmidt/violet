@@ -1,0 +1,9 @@
+<div>
+  <h1><%= post.title %>
+    <small><%=time_ago_in_words(post.created_at)%> ago by <%=post.user.name%></small>
+  </h1>
+  <p>
+    <%= post.body %>
+  </p>
+
+</div>

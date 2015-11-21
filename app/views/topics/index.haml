@@ -2,14 +2,7 @@
   %h1 Topics
   .row
     .col-md-8
-      - @topics.each do |topic|
-        .media
-          .media-body
-            %h4.media-heading
-              = link_to topic.name, topic
-            %small
-              = topic.description
-
+      =render @topics
     - if user_is_authorized_for_topics?
       .col-md-4
         = link_to "New Topic", new_topic_path, class: "btn btn-success"
