@@ -11,5 +11,6 @@
   = form_group_tag(post.errors[:body]) do
     =f.label :body
     =f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Enter post here'
+  .form_group=render partial: 'labels/form', locals: {f: f, topic: @topic, labels: @post.labels }
   .form-group
     =f.submit "Save", class: "btn btn-success"

@@ -5,7 +5,10 @@
     = link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-success'
   .row
     .col-md-8
-      %p.lead=@topic.description
+      %p.lead
+        = render partial: "labels/list", locals: { labels: @topic.labels }
+        %br/
+        = @topic.description
       - @topic.posts.each do |post|
         .media
           .media-body
