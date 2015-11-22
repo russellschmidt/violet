@@ -24,10 +24,10 @@ RSpec.describe Rating, type: :model do
   end
 
   describe ".update_rating" do
-    it "takes string and returns an enum" do
-      rating_score = "#{rating.severity}"
-      rating_as_enum = rating.severity
-      expect(Rating.update_rating(rating_score)).to eq(rating_as_enum)
+    it "takes string and returns an fixnum (integer)" do
+      rating_string = :PG
+      rating_as_i = rating.severity
+      expect(Rating.update_rating(rating_string)).to eq(rating_as_i)
     end
   end
 

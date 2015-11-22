@@ -10,15 +10,7 @@ class Rating < ActiveRecord::Base
   def self.update_rating(rating_string)
     return Rating.none if rating_string.blank?
 
-    case rating_string
-    when "PG"
-      :PG
-    when "PG13"
-      :PG13
-    when "R"
-      :R
-    else
-      return Rating.none
-    end 
+    Rating.find_or_create_by(severity: rating_string)
+    Rating.severity
   end
 end
