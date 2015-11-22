@@ -8,6 +8,17 @@ class Rating < ActiveRecord::Base
   enum severity: [ :PG, :PG13, :R ]
 
   def self.update_rating(rating_string)
-    # code here
+    return Rating.none if rating_string.blank?
+
+    case rating_string
+    when "PG"
+      :PG
+    when "PG13"
+      :PG13
+    when "R"
+      :R
+    else
+      return Rating.none
+    end 
   end
 end

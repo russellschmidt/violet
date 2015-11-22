@@ -14,12 +14,20 @@ RSpec.describe Rating, type: :model do
 
   describe "ratingalings" do
     it "allows the same rating to be associated with a different topic and post" do
-      topic.ratings << rating
-      post.ratings << rating
+      topic.rating = rating
+      post.rating = rating
 
-      topic_rating = topic.ratings[0]
-      post_rating = post.ratings[0]
+      topic_rating = topic.rating
+      post_rating = post.rating
       expect(topic_rating).to eql(post_rating)
+    end
+  end
+
+  describe ".update_rating" do
+    it "takes string and returns an enum" do
+      rating_score = "#{rating.severity}"
+      rating_as_enum = rating.severity
+      expect(Rating.update_rating(rating_score)).to eq(rating_as_enum)
     end
   end
 
