@@ -1,5 +1,7 @@
 class Rating < ActiveRecord::Base
   has_many :ratingalings
+  belongs_to :ratingable, polymorphic: true
+
   has_many :topics, through: :ratingalings, source: :ratingable, source_type: :Topic
   has_many :posts, through: :ratingalings, source: :ratingable, source_type: :Post
 
@@ -8,9 +10,19 @@ class Rating < ActiveRecord::Base
   enum severity: [ :PG, :PG13, :R ]
 
   def self.update_rating(rating_string)
-    return Rating.none if rating_string.blank?
+    r = :PG
+    case rating_string
+    when "0"
+      r = :PG
+    when "1"
+      r = :PG13
+    when "2"
+      r = :R
+    else
+      r = Rating.none
+    end
 
-    Rating.find_or_create_by(severity: rating_string)
-    Rating.severity
+    Rating.find_or_create_by(severity: r)
+
   end
 end

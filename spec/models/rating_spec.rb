@@ -24,10 +24,9 @@ RSpec.describe Rating, type: :model do
   end
 
   describe ".update_rating" do
-    it "takes string and returns an fixnum (integer)" do
-      rating_string = :PG
-      rating_as_i = rating.severity
-      expect(Rating.update_rating(rating_string)).to eq(rating_as_i)
+    it "takes a string and returns rating" do
+      r = rating.severity
+      expect(Rating.update_rating(r)).to eq(rating)
     end
   end
 

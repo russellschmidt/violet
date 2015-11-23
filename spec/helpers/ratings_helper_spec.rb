@@ -11,5 +11,12 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RatingsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "ratings_to_buttons" do
+    it "turns ratings into HTMl buttons" do
+      r = Rating.create!(severity: "R")
+      expected_html = '<a class="btn btn-info" href="/ratings/1">R</a>'
+
+      expect(ratings_to_buttons([r])).to eq expected_html
+    end
+  end
 end

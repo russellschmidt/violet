@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'ratings/show'
 
   resources :labels, only: [:show]
+  resources :ratings, only: [:show]
 
   resources :advertisements, only: [:index, :show, :new, :create]
   resources :questions
