@@ -7,6 +7,11 @@
             Topic: <%= link_to topic.name, topic %>
           </div>
         <% end %>
+        <% @rating.posts.each do |p| %>
+          <div>
+            Post: <%= Link_to post.title, topic_post_path(post.topic, post) %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>
