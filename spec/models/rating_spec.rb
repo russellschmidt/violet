@@ -24,9 +24,9 @@ RSpec.describe Rating, type: :model do
   end
 
   describe ".update_rating" do
-    it "takes a string and returns rating" do
+    it "takes a string and returns rating, comparing severities" do
       r = rating.severity
-      expect(Rating.update_rating(r)).to eq(rating)
+      expect(Rating.update_rating(r).severity).to eql(rating.severity)
     end
   end
 
