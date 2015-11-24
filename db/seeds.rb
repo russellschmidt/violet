@@ -10,6 +10,22 @@ include RandomData
 end
 users = User.all
 
+# create specific users for testing the app
+admin = User.create!(
+  name: 'Rusty',
+  email: 'reuvenschmidt@gmail.com',
+  password: '12344321',
+  role: 'admin'
+)
+
+member = User.create!(
+  name: 'Steve Sax',
+  email: 'sax@gmail.com',
+  password: '12344321',
+  role: 'member'
+)
+
+
 # Create topics
 15.times do
   Topic.create!(
@@ -21,12 +37,16 @@ topics = Topic.all
 
 # Create posts
 50.times do
-  Post.create!(
+  post = Post.create!(
     topic: topics.sample,
     user: users.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
-  )
+    )
+    # simulate times posts created for more realism and to test ranking algorithm
+  post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+  # add simulated votes
+  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 end
 posts = Post.all
 
@@ -57,20 +77,6 @@ end
 end
 
 
-admin = User.create!(
-  name: 'Rusty',
-  email: 'reuvenschmidt@gmail.com',
-  password: '12344321',
-  role: 'admin'
-)
-
-
-member = User.create!(
-  name: 'Steve Sax',
-  email: 'sax@gmail.com',
-  password: '12344321',
-  role: 'member'
-)
 
 puts "Seed finished"
 puts "#{User.count} users created"
@@ -79,3 +85,4 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
+puts "#{Vote.count} votes created"

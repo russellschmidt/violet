@@ -12,6 +12,7 @@
       - @topic.posts.each do |post|
         .media
           .media-body
+            =render partial: 'votes/voter', locals: { post: post }
             %h4.media-heading
               =link_to post.title, topic_post_path(@topic, post)
             .small

@@ -1,7 +1,9 @@
 .container
-  %h1
-    =@post.title
-    %small #{time_ago_in_words(@post.created_at)} ago by #{@post.user.name}
+  .row
+    = render partial: 'votes/voter', locals: { post: @post }
+    %h1
+      =@post.title
+      %small submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.user.name}
   .row
     .col-md-8
       = render partial: "labels/list", locals: {labels: @post.labels }
@@ -19,3 +21,11 @@
       .col-md-4
         =link_to "Edit", edit_topic_post_path(@post.topic, @post), class: "btn btn-success"
         =link_to "Delete Post", [@post.topic, @post], method: :delete, class: "btn btn-danger", data: {confirm: "R U Sure? Delete is forever"}
+    .col-md-4
+      %h3
+        =pluralize(@post.points, 'point')
+        .votes
+          %small
+            =pluralize(@post.up_votes, 'up vote')
+            &amp; 
+            =pluralize(@post.down_votes, 'down vote')
