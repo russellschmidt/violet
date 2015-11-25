@@ -41,7 +41,7 @@ RSpec.describe Post, type: :model do
     end
 
     describe "#up_votes" do
-      it "counts the nbumber of votes with value = 1" do
+      it "counts the number of votes with value = 1" do
         expect( post.up_votes ).to eq(@up_votes)
       end
     end
@@ -76,6 +76,13 @@ RSpec.describe Post, type: :model do
         post.votes.create!(value: -1)
         expect(post.rank).to eq (old_rank - 1)
       end
+    end
+
+    describe "upvote on new post" do
+      it "upvotes a new post automatically" do
+         expect(post.points).to eq(1)
+      end
+
     end
   end
 end
