@@ -27,5 +27,7 @@
         .votes
           %small
             =pluralize(@post.up_votes, 'up vote')
-            &amp; 
+            &amp;
             =pluralize(@post.down_votes, 'down vote')
+      - if current_user
+        = render partial: "favorites/favorite", locals: {post: @post}
