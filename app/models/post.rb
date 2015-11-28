@@ -16,6 +16,8 @@ class Post < ActiveRecord::Base
   validates :topic, presence: true
   validates :user, presence: true
 
+  after_create :send_emails
+
   def up_votes
     votes.where(value: 1).count
     # implied self.votes >> collects the votes with value 1 into a collection and then counts them
@@ -36,5 +38,12 @@ class Post < ActiveRecord::Base
     update_attribute(:rank, new_rank)
   end
 
+  private
+
+  def send_emails
+    # mark a new post as a favorite
+    post = 
+    # call new_post in FavoriteMailer
+  end
 
 end
