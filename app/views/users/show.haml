@@ -1,0 +1,19 @@
+.row
+  .col-md-8
+    .media
+      %br/
+      - avatar_url = @user.avatar_url(128)
+      - if avatar_url
+        .media-left
+          =image_tag avatar_url, class: "media-object"
+      .media-body
+        %h2.media-heading
+          = @user.name
+          %small
+            = pluralize(@user.posts.count, 'post')
+            ,
+            = pluralize(@user.comments.count, 'comment')
+%h2 Posts
+= render @user.posts
+%h2 Comments
+= render @user.comments
