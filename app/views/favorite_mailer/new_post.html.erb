@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  </head>
+  <body>
+    <h1>New Post Added - "<%= @post.title %>"</h1>
+    <small>By: <%= @post.user.name %></small>
+    <p>
+      We have added your post, favorited your own post like an egomaniac, and
+      will send you emails whenever someone else posts on your self-favorited post.
+      <strong>You're welcome!</strong>
+    </p>
+    <p>
+      <%= @post.body %>
+    </p>
+    <p>
+      <%= link_to "View Comment on site", topic_post_url(@post.topic, @post) %>
+    </p>
+    <%= image_tag("http://www.humorhound.com/wp-content/uploads/2013/10/bulldog-with-tie-and-fedora-hat.jpg", size: "290x458", alt: "Bulldog in a fedora and tie") %>
+
+  </body>
+</html>

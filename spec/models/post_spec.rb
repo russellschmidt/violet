@@ -79,4 +79,20 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "after_create" do
+    before do
+      @another_comment = Comment.new(body: RandomData.random_paragraph, post: post, user: user)
+    end
+
+    it "automatically favorites a new post" do
+      expect(user.favorite_for(post)).to_not be_nil
+    end
+
+    it "automatically sends an email when a comment is made to user's post" do
+      favorite = user.favorites.create(post: post)
+      expect(FavoriteMailer).to receive(:new_post).with(user, post).and_return(double(deliver_now: true))
+      @another_comment.save
+    end
+  end
 end

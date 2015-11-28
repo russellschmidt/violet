@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   validates :topic, presence: true
   validates :user, presence: true
 
-  after_create :send_emails
+  after_create :self_favorite_email
 
   def up_votes
     votes.where(value: 1).count
@@ -40,10 +40,11 @@ class Post < ActiveRecord::Base
 
   private
 
-  def send_emails
-    # mark a new post as a favorite
-    post = 
+  def self_favorite_email
+    user.favorites.create(post: self)
     # call new_post in FavoriteMailer
+    FavoriteMailer.new_post(user, self).deliver_now
+
   end
 
 end

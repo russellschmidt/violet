@@ -1,0 +1,13 @@
+Thank you for adding "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+We have added your post, favorited your own post like an egomaniac, and
+will send you emails whenever someone else posts on your self-favorited post.
+You're welcome!
+
+Your Post:
+By: <%= @post.user.name %>
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>
