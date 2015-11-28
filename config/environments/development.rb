@@ -39,4 +39,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost'}
+
+  # Raise ActionMailer error if mail delivery fails for Favorites
+  config.raise_delivery_errors = true
 end

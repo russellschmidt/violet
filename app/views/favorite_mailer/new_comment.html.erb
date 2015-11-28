@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  </head>
+  <body>
+    <h1>New Comment to "<%= @post.title %>"</h1>
+    <small>By: <%= @comment.user.name %></small>
+    <p>
+      <%= @comment.body %>
+    </p>
+    <p>
+      <%= link_to "View Comment on site", topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+    </p>
+    <%= image_tag("http://www.gunlistings.org/uploads/l1_misc_english_bulldog_puppies_95322.jpg", size: "300x231", alt: "Bulldog Puppy") %>
+
+  </body>
+</html>

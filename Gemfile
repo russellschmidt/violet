@@ -37,3 +37,6 @@ gem 'haml'
 
 # BCrypt for secure passwords
 gem 'bcrypt'
+
+# Figaro for secure credential storage
+gem 'figaro', '1.0'
