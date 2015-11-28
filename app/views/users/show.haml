@@ -7,13 +7,44 @@
         .media-left
           =image_tag avatar_url, class: "media-object"
       .media-body
-        %h2.media-heading
-          = @user.name
-          %small
-            = pluralize(@user.posts.count, 'post')
-            ,
-            = pluralize(@user.comments.count, 'comment')
-%h2 Posts
-= render @user.posts
-%h2 Comments
-= render @user.comments
+        - if any_posts_or_comments?
+          %h2.media-heading
+            = @user.name
+            %small
+              - if any_posts?
+                = pluralize(@user.posts.count, 'post')
+              - else
+                No posts yet
+              ,
+              - if any_comments?
+                = pluralize(@user.comments.count, 'comment')
+              - else
+                No comments yet
+        - else
+          %h2 #{@user.name} has not submitted any comments or posts yet.
+- if any_posts_or_comments?
+  - if any_posts?
+    %h2 Posts
+    = render @user.posts
+  - else
+    %h2 No posts yet
+  - if any_comments?
+    %h2 Comments
+    = render @user.comments
+  - else
+    %h2 No comments yet
+  %h2 Favorites
+  - @user.favorites.each do |favorite|
+    .media
+      - avatar_url = favorite.post.user.avatar_url(48)
+      - if avatar_url
+        .avatar_thumb
+          =image_tag avatar_url, class: "media-object"
+      %div
+        %h5
+          =favorite.post.title
+          by
+          =favorite.post.user.name
+        %p
+          Votes: #{favorite.post.points},
+          Comments: #{favorite.post.comments.count}

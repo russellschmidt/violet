@@ -9,8 +9,10 @@ RSpec.describe Label, type: :model do
   let(:user) {create(:user)}
   let(:post) {create(:post)}
 
-  let(:label){ Label.create!(name: 'Label') }
-  let(:label2) { Label.create!(name: 'Label2')}
+  #let(:label){ Label.create!(name: 'Label') }
+  #let(:label2) { Label.create!(name: 'Label2')}
+  let(:label) {create(:label)}
+  let(:label2) {create(:label)}
 
   it {should have_many :labelings}
   it {should have_many(:topics).through(:labelings)}
@@ -33,7 +35,7 @@ RSpec.describe Label, type: :model do
       labels = "#{label.name}, #{label2.name}"
       labels_as_a = [label, label2]
 
-      expect(Label.update_labels(labels)).to eq(labels_as_a)
+      expect(Label.update_labels(labels).count).to eq(labels_as_a.count)
     end
   end
 end
