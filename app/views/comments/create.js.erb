@@ -1,5 +1,6 @@
 <% if @comment.valid? %>
-  $('.js-comments').prepend("<%= escape_javascript(render(@comment)) %>");
+  // #2 add new comments to the bottom of the list  with append()
+  $('.js-comments').append("<%= escape_javascript(render(@comment)) %>");
   $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @new_comment }) %>");
 <% else %>
   $('.flash').prepend("<div class='alert alert-danger><button type='button' class='close' data-dismiss='alert'>&times;</button><%= flash[:error] %></div>");
