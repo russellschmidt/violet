@@ -89,34 +89,6 @@ ActiveRecord::Schema.define(version: 20151127184501) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ratingalings", force: :cascade do |t|
-    t.integer  "rating_id"
-    t.integer  "ratingable_id"
-    t.string   "ratingable_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "ratingalings", ["rating_id"], name: "index_ratingalings_on_rating_id"
-  add_index "ratingalings", ["ratingable_type", "ratingable_id"], name: "index_ratingalings_on_ratingable_type_and_ratingable_id"
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "severity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sponsored_posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "price"
-    t.integer  "topic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "sponsored_posts", ["topic_id"], name: "index_sponsored_posts_on_topic_id"
-
   create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.boolean  "public",      default: true
