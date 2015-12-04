@@ -10,9 +10,9 @@
         %h2.media-heading
           = @user.name
           %small
-            = pluralize(@user.posts.count, 'post')
-            ,
-            = pluralize(@user.comments.count, 'comment')
+            #{ pluralize(@user.posts.count, 'post') },        
+            %span.js-comments-count
+              = pluralize(@user.comments.count, 'comment')
 %h2 Posts
 = render @user.posts
 %h2 Comments
