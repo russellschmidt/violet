@@ -82,10 +82,10 @@ RSpec.describe VotesController, type: :controller do
       end
 
       it "the users second vote does not increase the number of votes" do
-        post :down_vote, post_id: user_post.id
+        post :down_vote, format: :js, post_id: user_post.id
         votes = user_post.votes.count
         post :down_vote, format: :js, post_id: user_post.id
-        expect(user_post.votes.count).to eq(votes)
+        expect(user_post.votes.count).to eq(votes)        
       end
 
       it "decreases the sum of post votes by one" do

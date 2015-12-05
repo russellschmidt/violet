@@ -1,15 +1,17 @@
 <% if current_user %>
   <div class="vote-arrows pull-left">
     <div>
-      <%= link_to " ", post_up_vote_path(post), class: 'glyphicon glyphicon-chevron-up', method: :post %>
+      <%= link_to " ", post_up_vote_path(post), class: 'glyphicon glyphicon-chevron-up', method: :post, remote: true %>
     </div>
     <div>
       <strong>
-        <%= post.points %>
+        <span id="vote_count-<%= post.id %>">
+          <%= post.points %>
+        </span>
       </strong>
     </div>
     <div>
-      <%= link_to " ", post_down_vote_path(post), class: 'glyphicon glyphicon-chevron-down', method: :post %>
+      <%= link_to " ", post_down_vote_path(post), class: 'glyphicon glyphicon-chevron-down', method: :post, remote: true %>
     </div>
   </div>
 <% end %>
