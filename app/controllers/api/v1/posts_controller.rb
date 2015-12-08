@@ -9,6 +9,8 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def show
     post = Post.find(params[:id])
-    render json: post.to_json, status: 200
+    comments = post.comments.all
+    response = [post, comments]
+    render json: response.to_json, status: 200
   end
 end
