@@ -35,6 +35,13 @@ class Api::V1::TopicsController < Api::V1::BaseController
   end
 
   def destroy
+    topic = Topic.find(params[:id])
+
+    if topic.destroy
+      render json: {message: "Topic destroyed", status: 200}, status: 200
+    else
+      render json: {error: "Topic destroy failed", status: 400}, status: 400
+    end
   end
 
 ###########
