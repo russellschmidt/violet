@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::UsersController, type: :controller do
   let(:my_user) {create(:user)}
 
-  context "unauthenticated users" do
+  context "unauthenticated user" do
     it "GET index returns http unauthenticated" do
       get :index
       expect(response).to have_http_status(401)
@@ -25,9 +25,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       post :create, user: { name: new_user.name, email: new_user.email, password: new_user.password }
       expect(response).to have_http_status(401)
     end
+
   end
 
-  context "authenticated and unauthorized users" do
+  context "authenticated and unauthorized user" do
     before do
       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
     end
@@ -53,6 +54,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       post :create, user: {name: new_user.name, password: new_user.password, email: new_user.email}
       expect(response).to have_http_status(403)
     end
+
   end
 
   context "authenticated and authorized users" do

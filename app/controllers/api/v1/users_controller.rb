@@ -32,7 +32,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     else
       render json: {error: "User is invalid", status: 400}, status: 400
     end
-    
+
   end
 
 
