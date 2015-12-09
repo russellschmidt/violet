@@ -23,8 +23,9 @@ class Api::V1::PostsController < Api::V1::BaseController
 
 
   def create
-    @topic = Topic.find(params[:id])
-    post = @topic.posts.build(post_params)
+    topic = Topic.find(params[:id])
+    post = topic.posts.build(post_params)
+    post.user = current_user
 
     if post.valid?
       post.save!
@@ -32,7 +33,6 @@ class Api::V1::PostsController < Api::V1::BaseController
     else
       render json: {error: "Post is invalid", status: 401}, status: 401
     end
-
   end
 
 

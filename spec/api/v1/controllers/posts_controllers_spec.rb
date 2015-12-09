@@ -55,11 +55,13 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   end
 
   context "authenticated users" do
+
     describe "POST create" do
+
       before do
-      #  @newer_post = build(:post, topic_id: my_topic.id, user_id: my_user.id)
         controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
-      #  post :create, id: @newer_post.id, post: {title: @newer_post.title, body: @newer_post.body}, user_id: my_user.id, topic_id: my_topic.id
+        @new_post = build(:post, user_id: my_user.id, topic_id: my_topic.id)
+        post :create, post: { title: @new_post.title, body: @new_post.body, topic_id: my_topic.id, user_id: my_user.id }
       end
 
       it "returns http success" do
@@ -72,10 +74,9 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
       it "creates a post with the correct attributes" do
         hashed_json = JSON.parse(response.body)
-        expect(@newer_post.title).to eq hashed_json["title"]
-        expect(@newer_post.body).to eq hashed_json["body"]
+        expect(@new_post.title).to eq hashed_json["title"]
+        expect(@new_post.body).to eq hashed_json["body"]
       end
     end
   end
-
 end
