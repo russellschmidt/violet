@@ -1,5 +1,5 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_filter :authenticate_user, only: :create
+  before_filter :authenticate_user, only: [:create, :update, :destroy]
 
   def update
     post = Post.find(params[:id])
