@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :create, :update]
       resources :topics, except: [:edit, :new]
         resources :posts, only: [:create]
-      resources :posts, only: [:update, :destroy]
+      resources :posts, only: [:update, :destroy, :show]
     end
   end
 

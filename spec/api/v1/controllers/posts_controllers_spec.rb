@@ -52,6 +52,23 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         expect(response).to have_http_status(401)
       end
     end
+
+    describe "POST show" do
+      before { get :show, id: my_post.id, post: {title: @new_post.title, body: @new_post.body}}
+
+      it "returns http success" do
+        expect(response).to have_http_status(:success)
+      end
+
+      it "returns json content type" do
+        expect(response.content_type).to eq 'application/json'
+      end
+
+      it "creates a post with the correct attributes" do
+        array_hashed_json = JSON.parse(response.body)
+        expect(@new_post.title).to eq array_hashed_json[0]["title"]
+      end
+    end
   end
 
   context "authenticated users" do
