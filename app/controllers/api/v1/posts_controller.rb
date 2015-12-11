@@ -38,12 +38,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   def show
     post = Post.find(params[:id])
     if post.valid?
-      post_output = []
-      post_output << post
-      post_output << post.comments unless post.comments == nil
-      post_output << post.votes unless post.votes == nil
-      post_output << post.favorites unless post.favorites == nil
-      render json: post_output.to_json, status: 200
+      render json: post.to_json(include: [:comments, :votes, :favorites]), status: 200
     else
       render json: {error: "Post not found", status: 404}, status: 404
     end

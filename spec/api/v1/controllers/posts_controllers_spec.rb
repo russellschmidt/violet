@@ -8,49 +8,19 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   let(:set_token) {controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
 }
 
-=begin
-  before do
-    @new_post = build(:post)
-  end
-=end
-
   context "unauthenticated users" do
 
-
-
     describe "json endpoint for PUT update" do
-      before { put :update, id: my_post.id, post: {title: new_post.title, body: new_post.body}}
-
-      it "returns http success" do
-        expect(response).to have_http_status(:success)
-      end
-
-      it "returns json content type" do
-        expect(response.content_type).to eq 'application/json'
-      end
-
-      it "updates a post with the correct attributes" do
-        updated_post = Post.find(my_post.id)
-        expect(updated_post.to_json).to eq response.body
+      it "returns http failure" do
+        put :update, id: my_post.id, post: {title: new_post.title, body: new_post.body}
+        expect(response).to have_http_status(401)
       end
     end
 
     describe "json endpoint for DELETE destroy" do
       before { delete :destroy, id: my_post.id}
-      it "returns http success" do
-        expect(response).to have_http_status(:success)
-      end
-
-      it "returns json content type" do
-        expect(response.content_type).to eq 'application/json'
-      end
-
-      it "returns the correct json success message" do
-        expect(response.body).to eq({"message" => "Post destroyed","status" => 200}.to_json)
-      end
-
-      it "deletes the post my_post" do
-        expect{Post.find(my_post.id)}.to raise_exception(ActiveRecord::RecordNotFound)
+      it "returns http failure" do
+        expect(response).to have_http_status(401)
       end
     end
 
@@ -74,7 +44,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 
       it "creates a post with the correct attributes" do
         array_hashed_json = JSON.parse(response.body)
-        expect(new_post.title).to eq array_hashed_json[0]["title"]
+        expect(new_post.title).to eq array_hashed_json["title"]
       end
     end
   end
@@ -82,6 +52,42 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   context "authenticated users" do
     before :each do
       set_token
+
+      describe "json endpoint for PUT update" do
+
+        it "returns http success" do
+          put :update, id: my_post.id, post: {title: new_post.title, body: new_post.body}
+          expect(response).to have_http_status(:success)
+        end
+
+        it "returns json content type" do
+          expect(response.content_type).to eq 'application/json'
+        end
+
+        it "updates a post with the correct attributes" do
+          updated_post = Post.find(my_post.id)
+          expect(updated_post.to_json).to eq response.body
+        end
+      end
+
+      describe "json endpoint for DELETE destroy" do
+        before { delete :destroy, id: my_post.id}
+        it "returns http success" do
+          expect(response).to have_http_status(:success)
+        end
+
+        it "returns json content type" do
+          expect(response.content_type).to eq 'application/json'
+        end
+
+        it "returns the correct json success message" do
+          expect(response.body).to eq({"message" => "Post destroyed","status" => 200}.to_json)
+        end
+
+        it "deletes the post my_post" do
+          expect{Post.find(my_post.id)}.to raise_exception(ActiveRecord::RecordNotFound)
+        end
+      end
 
       describe "POST create" do
 
